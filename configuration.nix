@@ -45,7 +45,28 @@
   # services.gnome.games.enable = false;
   # environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    settings = {
+      window-rule = {
+        geometry-corner-radius = 20;
+        clip-to-geometry = true;
+      }
+
+      debug = {
+        honor-xdg-activation-with-invalid-serial
+      }
+      #spawn-at-startup = [
+      #  {
+      #    command = [
+      #      "noctalia-shell"
+      #    ];
+      #  }
+      #];
+      spawn-at-startup = [ "noctalia-shell" "waybar" ];
+    };
+    useNautilus =false;
+  };
   services.greetd = {
     enable = true;
     settings =rec {
@@ -77,6 +98,34 @@
     # "input"
   };
 
+  # niri alone
+  #security.polkit.enable =true;
+  #services.polkit-gnome.enable = true;
+  #systemd.user.services.polkit-gnome-authentication-agent-1 = {
+  #  description = "polkit-gnome-authentication-agent-1";
+  #  wantedBy = [ "graphical-session.target" ];
+  #  wants = [ "graphical-session.target" ];
+  #  after = [ "graphical-session.target" ];
+  #  serviceConfig = {
+  #    Type = "simple";
+  #    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #    Restart = "on-failure";
+  #    RestartSec = 1;
+  #    TimeoutStopSec = 10;
+  #  };
+  #};
+  #services.gnome.gnome-keyring.enable = true;
+  #security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1"; # fix IME not working on Electron apps
+  #xdg.portal.config.niri = {
+  #  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
+  #};
+  # If you are using xdg-desktop-portal-gnome, it will attempt to use Nautilus as the file picker, which will fail if Nautilus is not installed.
+  
+  # noctalia-shell requires
+  services.tuned.enable = true;
+  services.upower.enable =true;
+
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -98,7 +147,7 @@
     #jack.enable = true;
   # };
 
-  # hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = true;
   # services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -156,9 +205,25 @@
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
-    kitty
+    kitty #alacritty
     fuzzel
-    #alacritty
+    #hyprlock #swaylock
+    #mako
+    #swayidle
+    #swaybg
+    noctalia-shell
+    noctalia-qs
+    brightnessctl
+    imagemagick
+    python3
+    ddcutil
+    power-profiles-daemon
+    #cliphist
+    #wlsunset
+    #xdg-desktop-portal
+    #evolution-data-server
+    #thunar
+    #xwayland-satellite
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
