@@ -26,7 +26,7 @@ layout {
         proportion 0.66667
     }
 
-    default-column-width { proportion 0.5;
+    default-column-width { proportion 0.5;}
 }
 
 // 启动程序
@@ -55,9 +55,6 @@ binds {
     Mod+Q { close-window; }
     Mod+F { fullscreen-window; }
     
-    // 工作区切换
-    Mod+1-9 { focus-workspace 1-9; }
-    Mod+Ctrl+1-9 { move-column-to-workspace 1-9; }
     
     // 音量控制
     XF86AudioRaiseVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
