@@ -637,19 +637,19 @@
         // Powers off the monitors. To turn them back on, do any input like
         // moving the mouse or pressing any other key.
         Mod+Shift+P { power-off-monitors; }
-    }
-    
-    window-rule {
-      // Rounded corners for a modern look.
-      geometry-corner-radius 20
 
-      // Clips window contents to the rounded corner boundaries.
-      clip-to-geometry true
-    }
+        window-rule {
+        // Rounded corners for a modern look.
+        geometry-corner-radius 20
 
-    debug {
-      // Allows notification actions and window activation from Noctalia.
-      honor-xdg-activation-with-invalid-serial
+        // Clips window contents to the rounded corner boundaries.
+        clip-to-geometry true
+        }
+
+        debug {
+        // Allows notification actions and window activation from Noctalia.
+        honor-xdg-activation-with-invalid-serial
+        }
     }
   '';
   # This value determines the Home Manager release that your
