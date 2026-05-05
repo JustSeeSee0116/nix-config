@@ -45,7 +45,20 @@
   # services.gnome.games.enable = false;
   # environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 
-  # programs.niri.enable = true;
+  programs.niri.enable = true;
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      #user = "greeter";
+      command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
+    };
+  };
+  programs.regreet = {
+    enable = true;
+  };
+  environment.etc."greetd/niri-greeter.kdl".text = ''
+    spawn-sh-at-startup "${pkgs.regreet}/bin/regreet; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation" #config.programs.regreet.package
+  '';
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -126,7 +139,8 @@
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
-    #kitty
+    kitty
+    fuzzel
     #alacritty
     ];
 
