@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    fuzzel
+    # fuzzel
     # vesktop
     # kitty
   ];

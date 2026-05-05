@@ -13,15 +13,16 @@
       #url = "github:AdnanHodzic/auto-cpufreq";
       #inputs.nixpkgs.follows = "nixpkgs";
     #};
-    #quickshell = {
-      #url = "github:outfoxxed/quickshell";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    #};
-    #noctalia = {
+    quickshell = {
+      #url = "git+https://github.com/quickshell-mirror/quickshell";
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
       #url = "github:noctalia-dev/noctalia-shell";
-      #url = "gitcode:noctalia-dev/noctalia-shell";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    #};
+      url = "git+https://gitcode.com/hl4w/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
@@ -40,7 +41,7 @@
             };
           }
           #auto-cpufreq.nixosModules.default
-          #./noctalia.nix
+          ./noctalia.nix
           #./chinese.nix
         ];
       };
