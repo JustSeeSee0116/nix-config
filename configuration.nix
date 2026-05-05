@@ -60,7 +60,7 @@
     enable = true;
   };
   environment.etc."greetd/niri-greeter.kdl".text = ''
-    spawn-sh-at-startup "${config.programs.regreet.package}/bin/regreet; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation"
+    spawn-sh-at-startup "${pkgs.regreet}/bin/regreet; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation"
     hotkey-overlay {
       skip-at-startup
     }
