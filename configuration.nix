@@ -48,17 +48,34 @@
   programs.niri.enable = true;
   services.greetd = {
     enable = true;
-    settings.default_session = {
-      #user = "greeter";
-      command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
+    settings =rec {
+      initial_session = {
+        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
+        user = "greeter";
+      };
+      default_session = initial_session;
     };
   };
   programs.regreet = {
     enable = true;
   };
   environment.etc."greetd/niri-greeter.kdl".text = ''
-    spawn-sh-at-startup "${pkgs.regreet}/bin/regreet; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation" #config.programs.regreet.package
+    spawn-sh-at-startup "${config.programs.regreet.package}/bin/regreet; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation"
+    hotkey-overlay {
+      skip-at-startup
+    }
+    cursor {
+      xcursor-theme "catppuccin-mocha-red-cursors"
+    }
   '';
+  #config.programs.regreet.package
+  users.groups.greeter = {};
+  users.users.greeter = {
+    isSystemUser = true;
+    group = "greeter";
+    extraGroups = [ "video" ];
+    # "input"
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
