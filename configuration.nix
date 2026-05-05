@@ -47,25 +47,7 @@
 
   programs.niri = {
     enable = true;
-    settings = {
-      window-rule = {
-        geometry-corner-radius = 20;
-        clip-to-geometry = true;
-      }
-
-      debug = {
-        honor-xdg-activation-with-invalid-serial
-      }
-      #spawn-at-startup = [
-      #  {
-      #    command = [
-      #      "noctalia-shell"
-      #    ];
-      #  }
-      #];
-      spawn-at-startup = [ "noctalia-shell" "waybar" ];
-    };
-    useNautilus =false;
+    useNautilus = false;
   };
   services.greetd = {
     enable = true;
