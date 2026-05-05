@@ -2,9 +2,11 @@
   description = "A template that shows all standard flake outputs";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixpkgs-unstable/nixexprs.tar.xz";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      #url = "github:nix-community/home-manager/release-25.11";
+      url = "git+https://git.nju.edu.cn/nix-mirror/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #auto-cpufreq = {
@@ -17,6 +19,7 @@
     #};
     #noctalia = {
       #url = "github:noctalia-dev/noctalia-shell";
+      #url = "gitcode:noctalia-dev/noctalia-shell";
       #inputs.nixpkgs.follows = "nixpkgs";
     #};
   };
