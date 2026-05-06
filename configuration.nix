@@ -52,11 +52,12 @@
   services.greetd = {
     enable = true;
     settings =rec {
-      initial_session = {
+      #initial_session = {
+      default_session = {
         command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
         user = "greeter";
       };
-      default_session = initial_session;
+      #default_session = initial_session;
     };
   };
   programs.regreet = {
@@ -81,23 +82,23 @@
   };
 
   # niri alone
-  #security.polkit.enable =true;
-  #services.polkit-gnome.enable = true;
-  #systemd.user.services.polkit-gnome-authentication-agent-1 = {
-  #  description = "polkit-gnome-authentication-agent-1";
-  #  wantedBy = [ "graphical-session.target" ];
-  #  wants = [ "graphical-session.target" ];
-  #  after = [ "graphical-session.target" ];
-  #  serviceConfig = {
-  #    Type = "simple";
-  #    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #    Restart = "on-failure";
-  #    RestartSec = 1;
-  #    TimeoutStopSec = 10;
-  #  };
-  #};
-  #services.gnome.gnome-keyring.enable = true;
-  #security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
+  security.polkit.enable =true;
+  services.polkit-gnome.enable = true;
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
   # environment.sessionVariables.NIXOS_OZONE_WL = "1"; # fix IME not working on Electron apps
   #xdg.portal.config.niri = {
   #  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
@@ -105,8 +106,8 @@
   # If you are using xdg-desktop-portal-gnome, it will attempt to use Nautilus as the file picker, which will fail if Nautilus is not installed.
   
   # noctalia-shell requires
-  services.tuned.enable = true;
-  services.upower.enable =true;
+  #services.tuned.enable = true;
+  #services.upower.enable =true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -129,7 +130,7 @@
     #jack.enable = true;
   # };
 
-  hardware.bluetooth.enable = true;
+  # hardware.bluetooth.enable = true;
   # services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -175,16 +176,17 @@
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
       ];
-    extra-substituters = [ 
-      "https://nix-community.cachix.org"
-      "https://noctalia.cachix.org" 
-    ];
-    extra-trusted-public-keys = [ 
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
-    ];
+    #extra-substituters = [ 
+    #  "https://nix-community.cachix.org"
+    #  "https://noctalia.cachix.org" 
+    #];
+    #extra-trusted-public-keys = [ 
+    #  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #  "noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
+    #];
   };
 
   # List packages installed in system profile.
@@ -193,23 +195,30 @@
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
-    kitty #alacritty
+    alacritty #kitty
     fuzzel
-    #hyprlock #swaylock
-    #mako
-    #swayidle
-    #swaybg
-    brightnessctl
-    imagemagick
-    python3
-    ddcutil
-    power-profiles-daemon
+    waybar
+    hyprlock #swaylock
+    mako
+    swayidle
+    swaybg
+    xdg-desktop-portal-gtk
+    #xdg-desktop-portal-gnome
+    #gnome-keyring
+    #plasma-polkit-agent
+
+    #thunar
+    #xwayland-satellite
+
+    #brightnessctl
+    #imagemagick
+    #python3
+    #ddcutil
+    #power-profiles-daemon
     #cliphist
     #wlsunset
     #xdg-desktop-portal
     #evolution-data-server
-    #thunar
-    #xwayland-satellite
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
