@@ -203,7 +203,7 @@
     swaybg
     xdg-desktop-portal-gtk
     xdg-desktop-portal-gnome
-    polkit-gnome
+    polkit_gnome
 
     #thunar
     xwayland-satellite
