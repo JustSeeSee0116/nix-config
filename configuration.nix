@@ -83,7 +83,8 @@
 
   # niri alone
   security.polkit.enable =true;
-  services.polkit-gnome.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -97,8 +98,7 @@
       TimeoutStopSec = 10;
     };
   };
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
+  programs.waybar.enable = true;
   # environment.sessionVariables.NIXOS_OZONE_WL = "1"; # fix IME not working on Electron apps
   #xdg.portal.config.niri = {
   #  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
@@ -197,18 +197,16 @@
     #wget
     alacritty #kitty
     fuzzel
-    waybar
     hyprlock #swaylock
     mako
     swayidle
     swaybg
     xdg-desktop-portal-gtk
-    #xdg-desktop-portal-gnome
-    #gnome-keyring
-    #plasma-polkit-agent
+    xdg-desktop-portal-gnome
+    polkit-gnome
 
     #thunar
-    #xwayland-satellite
+    xwayland-satellite
 
     #brightnessctl
     #imagemagick
