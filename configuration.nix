@@ -179,14 +179,14 @@
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
       ];
-    #extra-substituters = [ 
-    #  "https://nix-community.cachix.org"
-    #  "https://noctalia.cachix.org" 
-    #];
-    #extra-trusted-public-keys = [ 
-    #  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    #  "noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
-    #];
+    extra-substituters = [ 
+      "https://nix-community.cachix.org"
+      "https://noctalia.cachix.org" 
+    ];
+    extra-trusted-public-keys = [ 
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
+    ];
   };
 
   # List packages installed in system profile.
@@ -195,10 +195,8 @@
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
-    noctalia-qs
-    noctalia-shell
-    #kitty #alacritty
-    #fuzzel
+    kitty#alacritty # 
+    fuzzel
     #hyprlock #swaylock
     #mako
     #swayidle

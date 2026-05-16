@@ -5,10 +5,10 @@
   home.homeDirectory = "/home/ss";
   home.packages = with pkgs; [
   ];
-  xdg.configFile."niri/config.kdl" = {
-    source = ./config.kdl;
-    force = true;
-  };
+  #xdg.configFile."niri/config.kdl" = {
+  #  source = ./config.kdl;
+  #  force = true;
+  #};
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
