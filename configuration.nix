@@ -81,7 +81,7 @@
     # "input"
   };
 
-  # niri alone
+  # niri alone. need mako xdg-desktop-portal-gtk xdg-desktop-portal-gnome gnome-keyring plasma-polkit-agent xwayland-satellite alacritty fuzzel
   #security.polkit.enable =true;
   #services.gnome.gnome-keyring.enable = true;
   #security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
