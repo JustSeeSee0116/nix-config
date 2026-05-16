@@ -51,7 +51,7 @@
   };
   services.greetd = {
     enable = true;
-    settings =rec {
+    settings = rec {
       #initial_session = {
       default_session = {
         command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
@@ -82,9 +82,9 @@
   };
 
   # niri alone
-  security.polkit.enable =true;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
+  #security.polkit.enable =true;
+  #services.gnome.gnome-keyring.enable = true;
+  #security.pam.services.hyprlock = {}; #security.pam.services.swaylock = {};
   #systemd.user.services.polkit-gnome-authentication-agent-1 = {
   #  description = "polkit-gnome-authentication-agent-1";
   #  wantedBy = [ "graphical-session.target" ];
@@ -98,7 +98,7 @@
   #    TimeoutStopSec = 10;
   #  };
   #};
-  programs.waybar.enable = true;
+  #programs.waybar.enable = true;
   # environment.sessionVariables.NIXOS_OZONE_WL = "1"; # fix IME not working on Electron apps
   #xdg.portal.config.niri = {
   #  "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
@@ -106,8 +106,8 @@
   # If you are using xdg-desktop-portal-gnome, it will attempt to use Nautilus as the file picker, which will fail if Nautilus is not installed.
   
   # noctalia-shell requires
-  #services.tuned.enable = true;
-  #services.upower.enable =true;
+  services.tuned.enable = true;
+  services.upower.enable =true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -195,18 +195,20 @@
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
-    alacritty #kitty
-    fuzzel
-    hyprlock #swaylock
-    mako
-    swayidle
-    swaybg
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
-    polkit_gnome
+    noctalia-qs
+    noctalia-shell
+    #kitty #alacritty
+    #fuzzel
+    #hyprlock #swaylock
+    #mako
+    #swayidle
+    #swaybg
+    #xdg-desktop-portal-gtk
+    #xdg-desktop-portal-gnome
+    #polkit_gnome
 
     #thunar
-    xwayland-satellite
+    #xwayland-satellite
 
     #brightnessctl
     #imagemagick
@@ -217,7 +219,7 @@
     #wlsunset
     #xdg-desktop-portal
     #evolution-data-server
-    ];
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
