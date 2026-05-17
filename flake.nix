@@ -2,10 +2,18 @@
   description = "A template that shows all standard flake outputs";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixpkgs-unstable/nixexprs.tar.xz";
+    home-manager = {
+      #url = "github:nix-community/home-manager/release-25.11";
+      url = "git+https://git.nju.edu.cn/nix-mirror/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
+    #flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.url = "git+https://gitcode.com/gh_mirrors/fl/flake-parts";
+    #import-tree.url = "github:vic/import-tree";
+    import-tree.url = "github:denful/import-tree";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
