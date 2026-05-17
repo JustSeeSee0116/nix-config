@@ -13,7 +13,7 @@
     imports =
       [ # Include the results of the hardware scan.
         self.nixosModules.myMachineHardware
-        self.nixosModules.myHomeManager
+        #self.nixosModules.myHomeManager
       ];
 
     # Use the systemd-boot EFI boot loader.
@@ -171,7 +171,7 @@
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
-    home-manager.users.ss = self.homeModules.myHomeManager;
+    #home-manager.users.ss = self.homeModules.myHomeManager;
 
     # programs.firefox.enable = true;
     # services.flatpak.enable = true;
