@@ -2,52 +2,15 @@
   description = "A template that shows all standard flake outputs";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixpkgs-unstable/nixexprs.tar.xz";
-    home-manager = {
-      #url = "github:nix-community/home-manager/release-25.11";
-      url = "git+https://git.nju.edu.cn/nix-mirror/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    #auto-cpufreq = {
-      #url = "github:AdnanHodzic/auto-cpufreq";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    #};
-    quickshell = {
-      #url = "git+https://github.com/quickshell-mirror/quickshell";
-      #url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      url = "git+https://gitcode.com/gh_mirrors/qu/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      #url = "github:noctalia-dev/noctalia-shell";
-      url = "git+https://gitcode.com/hl4w/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; 
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager 
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.ss = ./home.nix;
-            };
-          }
-          #auto-cpufreq.nixosModules.default
-          ./noctalia.nix
-          #./chinese.nix
-        ];
-      };
-    };    
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 
 /*
   # Inputs
