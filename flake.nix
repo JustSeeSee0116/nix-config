@@ -3,7 +3,8 @@
 
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixpkgs-unstable/nixexprs.tar.xz";
+    #nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "git+https://mirrors.cernet.edu.cn/nixpkgs.git/?ref=nixos-unstable&shallow=1"; # https://mirrors.nju.edu.cn/git/nixpkgs.git/
     home-manager = {
       #url = "github:nix-community/home-manager/release-25.11";
       url = "git+https://git.nju.edu.cn/nix-mirror/home-manager";
