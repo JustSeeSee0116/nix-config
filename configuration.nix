@@ -7,8 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-      #.hosts/vm/impermanence.nix
+      ./hardware-configuration.nix
+      ./impermanence.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -160,7 +160,7 @@
   #};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nixos = {
+  users.users.ss = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -182,11 +182,11 @@
       ];
     extra-substituters = [ 
       "https://nix-community.cachix.org"
-      "https://noctalia.cachix.org" 
+      #"https://noctalia.cachix.org" 
     ];
     extra-trusted-public-keys = [ 
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
+      #"noctalia.cachix.org-1:pC0R47nnMEo5thcxNDtzWp0xNFQsBRglJzxWPp3dkU4=" 
     ];
   };
 
@@ -219,43 +219,6 @@
     #xdg-desktop-portal
     #evolution-data-server
   ];
-
-  environment.persistence."/persistent" = {
-    enable = true;  # NB: Defaults to true, not needed
-    hideMounts = true;
-    directories = [
-      #"/var/log"
-      #"/var/lib/bluetooth"
-      #"/var/lib/nixos"
-      #"/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      #{ directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-      "/home"
-      "/var"
-    ];
-    files = [
-      "/etc/machine-id"
-      #{ file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-    ];
-    users.nixos = {
-      directories = [
-        "Downloads"
-        "Music"
-        "Pictures"
-        "Documents"
-        "Videos"
-        #"VirtualBox VMs"
-        #{ directory = ".gnupg"; mode = "0700"; }
-        #{ directory = ".ssh"; mode = "0700"; }
-        #{ directory = ".nixops"; mode = "0700"; }
-        #{ directory = ".local/share/keyrings"; mode = "0700"; }
-        #".local/share/direnv"
-      ];
-      files = [
-        #".screenrc"
-      ];
-    };
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -299,6 +262,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
 

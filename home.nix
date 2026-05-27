@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+  home.username = "ss";
+  home.homeDirectory = "/home/ss";
   home.packages = with pkgs; [
   ];
   xdg.configFile."niri/config.kdl" = {
