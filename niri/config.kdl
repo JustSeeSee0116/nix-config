@@ -133,7 +133,6 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 1.0
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
@@ -275,7 +274,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-//spawn-at-startup "noctalia-shell" //"waybar" 
+//spawn-at-startup "waybar" // "noctalia-shell"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 //spawn-sh-at-startup "qs" "-c" "noctalia-shell"

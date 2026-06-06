@@ -5,9 +5,19 @@
   home.homeDirectory = "/home/ss";
   home.packages = with pkgs; [
   ];
-  xdg.configFile."niri/config.kdl" = {
-    source = ./config.kdl;
-    force = true;
-  };
-  home.stateVersion = "25.11";
+  #xdg.configFile."niri/config.kdl" = {
+  #  source = ./config.kdl;
+  #  force = true;
+  #};
+  xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "/persistent/nix-config/niri/config.kdl";
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "26.05";
 }
